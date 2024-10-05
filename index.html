@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EzCamp</title>
+    <style>
+        /* General styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+        }
+
+        /* Header styling */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        header img {
+            width: 150px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('assets/backgroundatas.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            text-align: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero-buttons {
+            margin-bottom: 20px;
+        }
+
+        .hero-buttons button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 0 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-buttons button:hover {
+            background-color: #45a049;
+        }
+
+        .search-bar {
+            margin-top: 30px;
+        }
+
+        .search-bar input {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px 0 0 25px;
+            outline: none;
+            width: 300px;
+            background-color: #fff;
+        }
+
+        .search-bar button {
+            padding: 12px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+        }
+
+        /* Destinations Section */
+        .destinations {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #fff;
+        }
+
+        .destinations h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .destination-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .destination-item {
+            background-color: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .destination-item img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+
+        .destination-item h3 {
+            padding: 15px 0;
+            font-size: 20px;
+            font-weight: 500;
+            color: #4CAF50;
+        }
+
+        .destination-item:hover {
+            transform: translateY(-10px);
+        }
+
+        /* Footer Section */
+        footer {
+            background-image: url('assets/backgroundfooter.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #000000;
+            padding: 60px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .footer-info {
+            margin-bottom: 30px;
+        }
+
+        .footer-info h3 {
+            font-size: 26px;
+            margin-bottom: 20px;
+        }
+
+        .footer-info ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-info ul li a {
+            color: #000000;
+            text-decoration: none;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-info ul li a:hover {
+            color: #4CAF50;
+        }
+
+        .social-media {
+            margin-bottom: 30px;
+        }
+
+        .social-media a {
+            margin: 0 15px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .social-media a img {
+            width: 30px;
+        }
+
+        .social-media a:hover {
+            transform: scale(1.2);
+        }
+
+        .language-selector {
+            background-color: rgba(255, 255, 255, 0.5);
+            padding: 10px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .language-selector select {
+            background: transparent;
+            border: none;
+            color: #000;
+            font-size: 16px;
+            appearance: none;
+            cursor: pointer;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 10px;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .search-bar input {
+                width: 80%;
+            }
+
+            .destination-item img {
+                height: 150px;
+            }
+
+            footer {
+                padding: 40px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <img src="assets/logo.png" alt="EzCamp Logo">
+        <nav>
+            <ul>
+                <li><a href="#">Telusuri</a></li>
+                <li><a href="#">Tentang Kami</a></li>
+                <li><a href="#">Favorit</a></li>
+                <li><a href="#">Masuk</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Kemah yang Nyaman di Alam</h1>
+        <div class="hero-buttons">
+            <button>Kamu Ingin Kemana?</button>
+            <button>Buat Jadwal</button>
+        </div>
+        <div class="search-bar">
+            <input type="text" value="Cari Destinasi..." readonly>
+            <button>Cari</button>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section class="destinations">
+        <h2>Destinasi Favorit</h2>
+        <div class="destination-grid">
+            <div class="destination-item">
+                <img src="assets/raja ampat.jpg" alt="Raja Ampat">
+                <h3>Raja Ampat</h3>
+            </div>
+            <div class="destination-item">
+                <img src="assets/toba.jpg" alt="Danau Toba">
+                <h3>Danau Toba</h3>
+            </div>
+            <div class="destination-item">
+                <img src="assets/bromo.jpg" alt="Gunung Bromo">
+                <h3>Gunung Bromo</h3>
+            </div>
+            <div class="destination-item">
+                <img src="assets/puncak.jpg" alt="Puncak">
+                <h3>Puncak</h3>
+            </div>
+            <!-- Additional Destinations -->
+            <div class="destination-item">
+                <img src="assets/cobanrondo.jpg" alt="Coban Rondo">
+                <h3>Coban Rondo</h3>
+            </div>
+            <div class="destination-item">
+                <img src="assets/cobanrais.jpeg" alt="Coban Rais">
+                <h3>Coban Rais</h3>
+            </div>
+            <div class="destination-item">
+                <img src="assets/kumbolo.jpg" alt="Kumbolo">
+                <h3>Kumbolo</h3>
+            </div>
+            <div class="destination-item">
+                <img src="assets/bedengan.jpg" alt="Bedengan">
+                <h3>Bedengan</h3>
+            </div>
+            <div class="destination-item">
+                <img src="assets/calderacamp.jpeg" alt="Caldera Camp">
+                <h3>Cladera Camp</h3>
+            </div>
+            <div class="destination-item">
+                <img src="assets/payung.jpg" alt="Pantai Gunung Payung">
+                <h3>Pantai Gunung Payung</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-info">
+            <h3>EzCamp</h3>
+            <ul>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Terms of Service</a></li>
+                <li><a href="#">Contact Us</a></li>
+            </ul>
+        </div>
+
+        <div class="social-media">
+            <a href="#"><img src="assets/fb.png" alt="Facebook"></a>
+            <a href="#"><img src="assets/ig.jpg" alt="Instagram"></a>
+            <a href="#"><img src="assets/twitter.png" alt="Twitter"></a>
+        </div>
+
+        <div class="language-selector">
+            <select>
+                <option value="id">Bahasa Indonesia</option>
+            </select>
+        </div>
+    </footer>
+
+</body>
+
+</html>
